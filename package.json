@@ -1,6 +1,6 @@
 {
 	"name": "prisma-class-generator-1m",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Class generator from Prisma schema",
 	"main": "dist/index.js",
 	"license": "MIT",
@@ -20,10 +20,11 @@
 		"dev": "ts-node src/index.ts",
 		"generate:postgresql": "prisma generate --schema prisma/postgresql.prisma",
 		"generate:mysql": "prisma generate --schema prisma/mysql.prisma",
-		"generate:mongodb": "prisma generate --schema prisma/mongodb.prisma"
+		"generate:mongodb": "prisma generate --schema prisma/mongodb.prisma",
+		"npm:publish": "npm publish"
 	},
 	"bin": {
-		"prisma-class-generator": "dist/bin.js"
+		"prisma-class-generator-1m": "dist/bin.js"
 	},
 	"engines": {
 		"node": ">=14"
