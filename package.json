@@ -1,6 +1,6 @@
 {
-	"name": "prisma-class-generator",
-	"version": "0.2.9",
+	"name": "prisma-class-generator-1m",
+	"version": "0.0.1",
 	"description": "Class generator from Prisma schema",
 	"main": "dist/index.js",
 	"license": "MIT",
@@ -10,14 +10,14 @@
 		"typescript",
 		"generator"
 	],
-	"homepage": "https://github.com/kimjbstar/prisma-class-generator",
+	"homepage": "https://github.com/wgcairui/prisma-class-generator",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/kimjbstar/prisma-class-generator.git"
+		"url": "https://github.com/wgcairui/prisma-class-generator"
 	},
 	"scripts": {
 		"format": "prettier --write \"src/**/*.ts\"",
-		"dev": "node -r ts-node/register src/index.ts",
+		"dev": "ts-node src/index.ts",
 		"generate:postgresql": "prisma generate --schema prisma/postgresql.prisma",
 		"generate:mysql": "prisma generate --schema prisma/mysql.prisma",
 		"generate:mongodb": "prisma generate --schema prisma/mongodb.prisma"

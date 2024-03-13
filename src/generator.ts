@@ -1,4 +1,4 @@
-import { GeneratorOptions } from '@prisma/generator-helper'
+import { DMMF, GeneratorOptions } from '@prisma/generator-helper'
 import { parseEnvValue } from '@prisma/internals'
 import * as path from 'path'
 import { PrismaConvertor } from './convertor'
@@ -129,6 +129,7 @@ export class PrismaClassGenerator {
 
 	run = async (): Promise<void> => {
 		const { generator, dmmf } = this.options
+
 		const output = parseEnvValue(generator.output!)
 		const config = this.getConfig()
 		this.setPrismaClientPath()
@@ -163,6 +164,10 @@ export class PrismaClassGenerator {
 		})
 		if (config.makeIndexFile) {
 			const indexFilePath = path.resolve(output, 'index.ts')
+			const enumFilePath = path.resolve(
+				output,
+				config.clientImportPath + '.ts',
+			)
 			const imports = files.map(
 				(fileRow) =>
 					new ImportComponent(
@@ -190,6 +195,18 @@ export class PrismaClassGenerator {
 				this.prettierOptions,
 			)
 			writeTSFile(indexFilePath, formattedContent, config.dryRun)
+
+			const enumsTs = dmmf.datamodel.enums
+				.map(({ values, name }) => {
+					const valueStr = values
+						.map((v) => `${v.name} = "${v.name}"`)
+						.join(',\r\n	')
+					return `export enum ${name} {
+	${valueStr}
+}`
+				})
+				.join('\r\n')
+			writeTSFile(enumFilePath, enumsTs, config.dryRun)
 		}
 		return
 	}

@@ -20,3 +20,7 @@ generatorHandler({
 })
 
 log('Handler Registered.')
+export enum a {
+	b = 'b',
+	c = 'c',
+}
