@@ -212,7 +212,11 @@ export class PrismaConvertor {
 		const relationTypes = uniquify(
 			model.fields
 				.filter(
-					(field) => field.relationName && (this._config.separateRelationFields ? true : model.name !== field.type),
+					(field) =>
+						field.relationName &&
+						(this._config.separateRelationFields
+							? true
+							: model.name !== field.type),
 				)
 				.map((v) => v.type),
 		)
@@ -335,6 +339,8 @@ export class PrismaConvertor {
 		const field = new FieldComponent({
 			name: dmmfField.name,
 			useUndefinedDefault: this._config.useUndefinedDefault,
+			jsonTypeNamespace: this._config.jsonTypeNamespace,
+			documentation: dmmfField.documentation,
 		})
 		let type = this.getPrimitiveMapTypeFromDMMF(dmmfField)
 

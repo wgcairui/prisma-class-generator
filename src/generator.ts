@@ -53,6 +53,10 @@ export const PrismaClassGeneratorOptions = {
 		defaultValue: false,
 		desc: 'preserve default nullable behavior',
 	},
+	jsonTypeNamespace: {
+		desc: 'set prisma jsonType namespace',
+		defaultValue: undefined,
+	},
 } as const
 
 export type PrismaClassGeneratorOptionsKeys =

@@ -9,13 +9,15 @@ generator clent {
 }
 
 generator prismaClassGenerator {
-  provider               = "node -r ts-node/register/transpile-only src/index.ts"
-  output                 = "../src/_gen/prisma-class"
-  dryRun                 = "false"
-  clientImportPath       = "./enum"
-  useSwagger             = false
-  makeIndex              = false
-  separateRelationFields = false
+  provider                = "node -r ts-node/register/transpile-only src/index.ts"
+  output                  = "../src/_gen/prisma-class"
+  dryRun                  = "false"
+  clientImportPath        = "./enum"
+  useSwagger              = false
+  makeIndex               = false
+  separateRelationFields  = false
+  preserveDefaultNullable = true
+  jsonTypeNamespace       = "PrismaJson"
 }
 
 enum ProductType {
@@ -34,6 +36,7 @@ model Product {
   id            Int                @id
   title         String             @db.VarChar(255)
   desc          String             @default("abc") @db.VarChar(1024)
+  /// MyType
   images        Json               @db.Json
   isShown       Boolean?           @default(false)
   stock         Int?               @default(0)

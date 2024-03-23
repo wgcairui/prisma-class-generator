@@ -8,12 +8,17 @@ export class FieldComponent extends BaseComponent implements Echoable {
 	preserveDefaultNullable: boolean
 	nullable: boolean
 	useUndefinedDefault: boolean
+	jsonTypeNamespace?: string
 	default?: string
 	type?: string
+	documentation?: string
 
 	echo = () => {
 		let name = this.name
 		let type = this.type
+		if (this.jsonTypeNamespace && this.documentation) {
+			type = `${this.jsonTypeNamespace}.${this.documentation}`
+		}
 		if (this.nullable === true) {
 			if (this.preserveDefaultNullable) {
 				type = this.type + ' | null'
@@ -44,7 +49,12 @@ export class FieldComponent extends BaseComponent implements Echoable {
 			.replace('#!{DEFAULT}', defaultValue)
 	}
 
-	constructor(obj: { name: string; useUndefinedDefault: boolean }) {
+	constructor(obj: {
+		name: string
+		useUndefinedDefault: boolean
+		jsonTypeNamespace?: string
+		documentation?: string
+	}) {
 		super(obj)
 	}
 }
