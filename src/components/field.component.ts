@@ -16,8 +16,15 @@ export class FieldComponent extends BaseComponent implements Echoable {
 	echo = () => {
 		let name = this.name
 		let type = this.type
-		if (this.jsonTypeNamespace && this.documentation) {
-			type = `${this.jsonTypeNamespace}.${this.documentation}`
+		if (
+			this.jsonTypeNamespace &&
+			this.documentation &&
+			/^\[.*\]$/.test(this.documentation)
+		) {
+			type = `${this.jsonTypeNamespace}.${this.documentation.replace(
+				/(^\[|\]$)/g,
+				'',
+			)}`
 		}
 		if (this.nullable === true) {
 			if (this.preserveDefaultNullable) {
