@@ -28,7 +28,7 @@ export class FieldComponent extends BaseComponent implements Echoable {
 		}
 		if (this.nullable === true) {
 			if (this.preserveDefaultNullable) {
-				type = this.type + ' | null'
+				type += ' | null'
 			} else {
 				name += '?'
 			}
