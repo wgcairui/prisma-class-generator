@@ -203,10 +203,10 @@ export class PrismaClassGenerator {
 			const enumsTs = dmmf.datamodel.enums
 				.map(({ values, name }) => {
 					const valueStr = values
-						.map((v) => `${v.name} = "${v.name}"`)
-						.join(',\r\n	')
+						.map((v) => `${v.name} = '${v.name}'`)
+						.join(',\r\n  ')
 					return `export enum ${name} {
-	${valueStr}
+  ${valueStr}
 }`
 				})
 				.join('\r\n')
