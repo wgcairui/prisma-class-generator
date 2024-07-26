@@ -206,7 +206,7 @@ export class PrismaClassGenerator {
 						.map((v) => `${v.name} = '${v.name}'`)
 						.join(',\r\n  ')
 					return `export enum ${name} {
-  ${valueStr}
+  ${valueStr},
 }`
 				})
 				.join('\r\n')
