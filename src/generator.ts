@@ -207,7 +207,8 @@ export class PrismaClassGenerator {
 						.join(',\r\n  ')
 					return `export enum ${name} {
   ${valueStr},
-}`
+}
+`
 				})
 				.join('\r\n')
 			writeTSFile(enumFilePath, enumsTs, config.dryRun)
