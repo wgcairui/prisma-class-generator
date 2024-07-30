@@ -200,17 +200,17 @@ export class PrismaClassGenerator {
 			)
 			writeTSFile(indexFilePath, formattedContent, config.dryRun)
 
-			const enumsTs = dmmf.datamodel.enums
-				.map(({ values, name }) => {
-					const valueStr = values
-						.map((v) => `${v.name} = '${v.name}'`)
-						.join(',\r\n  ')
-					return `export enum ${name} {
+			const enumsTs =
+				dmmf.datamodel.enums
+					.map(({ values, name }) => {
+						const valueStr = values
+							.map((v) => `${v.name} = '${v.name}'`)
+							.join(',\r\n  ')
+						return `export enum ${name} {
   ${valueStr},
-}
-`
-				})
-				.join('\r\n')
+}`
+					})
+					.join('\r\n') + '\n'
 			writeTSFile(enumFilePath, enumsTs, config.dryRun)
 		}
 		return
